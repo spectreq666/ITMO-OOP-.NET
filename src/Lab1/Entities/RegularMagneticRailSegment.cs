@@ -1,4 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Models.DTO;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Railways;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
@@ -12,15 +12,14 @@ public class RegularMagneticRailSegment : IRailSegment
 
     public double Length { get; }
 
-    public ProcessTrainDto ProcessTrain(Train train)
+    public RouteResult MoveTrain(Train train)
     {
         double time = train.CalculateTime(Length);
         if (time <= 0)
         {
-            return new ProcessTrainDto(time, false);
+            return new RouteResult.Failure();
         }
 
-        var result = new ProcessTrainDto(train.CalculateTime(Length), true);
-        return result;
+        return new RouteResult.Success(time);
     }
 }

@@ -1,4 +1,4 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Models.DTO;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Railways;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
@@ -21,12 +21,12 @@ public class Station : IRailSegment
 
     public double MaxSpeedLimit { get; }
 
-    public ProcessTrainDto ProcessTrain(Train train)
+    public RouteResult MoveTrain(Train train)
     {
         double currentSpeed = train.Speed;
         if (currentSpeed > MaxSpeedLimit)
         {
-            return new ProcessTrainDto(0, false);
+            return new RouteResult.Failure();
         }
 
         train.Stop();
@@ -34,6 +34,6 @@ public class Station : IRailSegment
 
         double stationTime = (UnloadTime * (Passangers / 2)) + (LoadTime * (Passangers - (Passangers / 2)));
 
-        return new ProcessTrainDto(stationTime, true);
+        return new RouteResult.Success(stationTime);
     }
 }

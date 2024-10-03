@@ -1,5 +1,4 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab1.Entities;
-using Itmo.ObjectOrientedProgramming.Lab1.Models.DTO;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Railways;
 
@@ -15,28 +14,31 @@ public class Route
 
     private readonly double _endSpeedLimit;
 
-    public ProcessTrainDto ProcessRoute(Train train)
+    public RouteResult ProcessRoute(Train train)
     {
         double totalTime = 0;
 
         foreach (IRailSegment rail in _rails)
         {
-            ProcessTrainDto result = rail.ProcessTrain(train);
+            RouteResult result = rail.MoveTrain(train);
 
-            if (!result.IsSuccess)
+            switch (result)
             {
-                return new ProcessTrainDto(0, false);
-            }
+                case RouteResult.Success success:
+                    totalTime += success.Time;
+                    break;
 
-            totalTime += result.Time;
+                case RouteResult.Failure failure:
+                    return failure;
+            }
         }
 
         if (train.Speed > _endSpeedLimit)
         {
-            return new ProcessTrainDto(0, false);
+            return new RouteResult.Failure();
         }
 
         train.Stop();
-        return new ProcessTrainDto(totalTime, true);
+        return new RouteResult.Success(totalTime);
     }
 }
