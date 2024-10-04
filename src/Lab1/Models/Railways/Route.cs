@@ -4,15 +4,15 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Railways;
 
 public class Route
 {
+    private readonly List<IRailSegment> _rails;
+
+    private readonly double _endSpeedLimit;
+
     public Route(IReadOnlyCollection<IRailSegment> rails, double endSpeedLimit)
     {
         _rails = new List<IRailSegment>(rails);
         _endSpeedLimit = endSpeedLimit;
     }
-
-    private readonly List<IRailSegment> _rails;
-
-    private readonly double _endSpeedLimit;
 
     public RouteResult ProcessRoute(Train train)
     {
