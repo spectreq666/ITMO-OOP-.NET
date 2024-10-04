@@ -10,14 +10,14 @@ public class Station : IRailSegment
         UnloadTime = unloadTime;
         LoadTime = loadTime;
         MaxSpeedLimit = maxSpeedLimit;
-        Passangers = passengers;
+        Passengers = passengers;
     }
 
     public double UnloadTime { get; }
 
     public double LoadTime { get; }
 
-    public double Passangers { get; }
+    public double Passengers { get; }
 
     public double MaxSpeedLimit { get; }
 
@@ -32,7 +32,7 @@ public class Station : IRailSegment
         train.Stop();
         train.Speed = currentSpeed;
 
-        double stationTime = (UnloadTime * (Passangers / 2)) + (LoadTime * (Passangers - (Passangers / 2)));
+        double stationTime = (UnloadTime * (Passengers / 2)) + (LoadTime * (Passengers - (Passengers / 2)));
 
         return new RouteResult.Success(stationTime);
     }
