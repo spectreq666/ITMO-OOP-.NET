@@ -12,7 +12,7 @@ public class RegularMagneticRailSegment : IRailSegment
 
     public double Length { get; }
 
-    public RouteResult MoveTrain(Train train)
+    public RouteResult MoveTrain(ITrain train)
     {
         double time = train.CalculateTime(Length);
         if (time <= 0)

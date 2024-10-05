@@ -1,8 +1,6 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Entities;
+﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Railways;
 
-namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Railways;
-
-public class Route
+public class Route : IRoute
 {
     private readonly List<IRailSegment> _rails;
 
@@ -14,7 +12,7 @@ public class Route
         _endSpeedLimit = endSpeedLimit;
     }
 
-    public RouteResult ProcessRoute(Train train)
+    public RouteResult Run(ITrain train)
     {
         double totalTime = 0;
 
@@ -38,7 +36,7 @@ public class Route
             return new RouteResult.Failure();
         }
 
-        train.Stop();
+        train.StopMove();
         return new RouteResult.Success(totalTime);
     }
 }

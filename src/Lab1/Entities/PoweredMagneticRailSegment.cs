@@ -15,7 +15,7 @@ public class PoweredMagneticRailSegment : IRailSegment
 
     public double Force { get; }
 
-    public RouteResult MoveTrain(Train train)
+    public RouteResult MoveTrain(ITrain train)
     {
         double time = 0;
         double remainingDistance = Length;

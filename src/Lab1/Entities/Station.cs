@@ -21,7 +21,7 @@ public class Station : IRailSegment
 
     public double MaxSpeedLimit { get; }
 
-    public RouteResult MoveTrain(Train train)
+    public RouteResult MoveTrain(ITrain train)
     {
         double currentSpeed = train.Speed;
         if (currentSpeed > MaxSpeedLimit)
@@ -29,7 +29,7 @@ public class Station : IRailSegment
             return new RouteResult.Failure();
         }
 
-        train.Stop();
+        train.StopMove();
         train.Speed = currentSpeed;
 
         double stationTime = (UnloadTime * (Passengers / 2)) + (LoadTime * (Passengers - (Passengers / 2)));

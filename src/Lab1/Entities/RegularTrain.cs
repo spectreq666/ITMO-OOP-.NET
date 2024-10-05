@@ -1,8 +1,10 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Models.Railways;
 
-public class Train
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities;
+
+public class RegularTrain : ITrain
 {
-    public Train(double mass, double maxForce, double precision)
+    public RegularTrain(double mass, double maxForce, double precision)
     {
         Mass = mass;
         MaxForce = maxForce;
@@ -65,7 +67,7 @@ public class Train
         return time;
     }
 
-    public void Stop()
+    public void StopMove()
     {
         Speed = 0;
         Acceleration = 0;
