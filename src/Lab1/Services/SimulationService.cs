@@ -6,9 +6,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 public class SimulationService
 {
     private readonly ITrain _train;
-    private readonly Route _route;
+    private readonly IRoute _route;
 
-    public SimulationService(ITrain train, Route route)
+    public SimulationService(ITrain train, IRoute route)
     {
         _train = train;
         _route = route;
