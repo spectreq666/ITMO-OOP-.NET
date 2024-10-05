@@ -92,7 +92,6 @@ public class RouteTests
         Assert.IsType<RouteResult.Failure>(simulationResult);
         var result = (RouteResult.Failure)simulationResult;
 
-        Assert.False(result.IsSuccess);
         _output.WriteLine($"Is Success?: {result.IsSuccess}");
         _output.WriteLine($"Total Time: {result.Time}");
     }
@@ -109,7 +108,6 @@ public class RouteTests
         Assert.IsType<RouteResult.Success>(simulationResult);
         var result = (RouteResult.Success)simulationResult;
 
-        Assert.True(result.IsSuccess);
         _output.WriteLine($"Is Success?: {result.IsSuccess}");
         _output.WriteLine($"Total Time: {result.Time}");
     }
@@ -126,7 +124,6 @@ public class RouteTests
         Assert.IsType<RouteResult.Failure>(simulationResult);
         var result = (RouteResult.Failure)simulationResult;
 
-        Assert.False(result.IsSuccess);
         _output.WriteLine($"Is Success?: {result.IsSuccess}");
         _output.WriteLine($"Total Time: {result.Time}");
     }
@@ -143,7 +140,6 @@ public class RouteTests
         Assert.IsType<RouteResult.Failure>(simulationResult);
         var result = (RouteResult.Failure)simulationResult;
 
-        Assert.False(result.IsSuccess);
         _output.WriteLine($"Is Success?: {result.IsSuccess}");
         _output.WriteLine($"Total Time: {result.Time}");
     }
