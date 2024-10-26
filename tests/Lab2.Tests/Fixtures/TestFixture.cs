@@ -6,16 +6,6 @@ namespace Lab2.Tests.Fixtures;
 
 public class TestFixture
 {
-    public GenericRepository<LabWork> LabRepository { get; }
-
-    public GenericRepository<Lecture> LectureRepository { get; }
-
-    public GenericRepository<Subject> SubjectRepository { get; }
-
-    public User Author1 { get; }
-
-    public User Author2 { get; }
-
     public TestFixture()
     {
         LabRepository = new GenericRepository<LabWork>();
@@ -85,4 +75,14 @@ public class TestFixture
             .Build();
         SubjectRepository.Add(subject);
     }
+
+    public GenericRepository<LabWork> LabRepository { get; }
+
+    public GenericRepository<Lecture> LectureRepository { get; }
+
+    public GenericRepository<Subject> SubjectRepository { get; }
+
+    public User Author1 { get; }
+
+    public User Author2 { get; }
 }
