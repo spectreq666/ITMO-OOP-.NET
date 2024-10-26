@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class Subject : IEntity, IPrototype<Subject>
 {
-    private static int _idCounter = 0;
+    private readonly int _idCounter;
     private readonly List<LabWork> _labWorks;
     private List<Lecture> _lectureMaterials;
 

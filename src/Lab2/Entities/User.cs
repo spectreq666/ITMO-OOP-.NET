@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class User : IEntity
 {
-    private static int _idCounter = 0;
+    private readonly int _idCounter;
 
     public User(string name)
     {

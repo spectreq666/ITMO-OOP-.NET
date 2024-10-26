@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class Lecture : IEntity, IPrototype<Lecture>
 {
-    private static int _idCounter = 0;
+    private readonly int _idCounter;
 
     public Lecture(string name, string description, string content, User author, int? parentId = null)
     {

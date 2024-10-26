@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class LabWork : IEntity, IPrototype<LabWork>
 {
-    private static int _idCounter = 0;
+    private readonly int _idCounter;
 
     public LabWork(string name, string description, string rateCriteria, int points, User author, int? parentId = null)
     {

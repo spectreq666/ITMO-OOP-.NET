@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class EducationalProgram : IEntity
 {
-    private static int _idCounter = 0;
+    private readonly int _idCounter;
     private readonly List<(int Semester, Subject Subject)> _subjects;
 
     public EducationalProgram(string name, User programLeader, IReadOnlyCollection<(int Semester, Subject Subject)> subjects)
