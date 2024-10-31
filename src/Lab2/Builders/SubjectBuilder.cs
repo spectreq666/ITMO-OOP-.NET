@@ -3,7 +3,7 @@ using Itmo.ObjectOrientedProgramming.Lab2.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Builders;
 
-public class SubjectFactory : IBuilder<Subject>
+public class SubjectBuilder : ISubjectBuilder
 {
     private readonly int? _parentId;
     private int _totalPoints;
@@ -13,7 +13,7 @@ public class SubjectFactory : IBuilder<Subject>
     private IReadOnlyCollection<LabWork> _labWorks;
     private IReadOnlyCollection<Lecture> _lectureMaterials;
 
-    public SubjectFactory()
+    public SubjectBuilder()
     {
         _name = string.Empty;
         _author = null;
@@ -24,37 +24,37 @@ public class SubjectFactory : IBuilder<Subject>
         _parentId = null;
     }
 
-    public SubjectFactory WithName(string name)
+    public ISubjectBuilder WithName(string name)
     {
         _name = name;
         return this;
     }
 
-    public SubjectFactory WithAuthor(User author)
+    public ISubjectBuilder WithAuthor(User author)
     {
         _author = author;
         return this;
     }
 
-    public SubjectFactory WithGradingType(GradingFormat gradingFormat, int specifiedPoints)
+    public ISubjectBuilder WithGradingType(GradingFormat gradingFormat, int specifiedPoints)
     {
         _gradingType = new GradingType(gradingFormat, specifiedPoints);
         return this;
     }
 
-    public SubjectFactory WithTotalPoints(int totalPoints)
+    public ISubjectBuilder WithTotalPoints(int totalPoints)
     {
         _totalPoints = totalPoints;
         return this;
     }
 
-    public SubjectFactory WithLabWorks(IReadOnlyCollection<LabWork> labWorks)
+    public ISubjectBuilder WithLabWorks(IReadOnlyCollection<LabWork> labWorks)
     {
         _labWorks = new List<LabWork>(labWorks);
         return this;
     }
 
-    public SubjectFactory WithLectureMaterials(IReadOnlyCollection<Lecture> lectureMaterials)
+    public ISubjectBuilder WithLectureMaterials(IReadOnlyCollection<Lecture> lectureMaterials)
     {
         _lectureMaterials = new List<Lecture>(lectureMaterials);
         return this;

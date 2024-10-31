@@ -11,7 +11,7 @@ public class EducationalProgram : IEntity
     {
         Id = ++_idCounter;
         Name = name;
-        Author = programLeader;
+        Leader = programLeader;
         _subjects = new List<(int Semester, Subject Subject)>(subjects);
     }
 
@@ -19,7 +19,7 @@ public class EducationalProgram : IEntity
 
     public string Name { get; }
 
-    public User Author { get; }
+    public User Leader { get; }
 
     public IReadOnlyCollection<(int Semester, Subject Subject)> Subjects => _subjects.AsReadOnly();
 }

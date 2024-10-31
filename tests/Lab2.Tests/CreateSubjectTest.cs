@@ -1,5 +1,6 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Builders;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.Factories;
 using Itmo.ObjectOrientedProgramming.Lab2.Models;
 using Xunit;
 
@@ -11,68 +12,64 @@ public class CreateSubjectTest
     public void BuildSubject_WhenTotalPointsIsNot100_Failed()
     {
         var author = new User("Author 1");
+        var entityFactory = new EntityFactory(author);
 
         var labWorks = new List<LabWork>
         {
-            new LabWorkFactory()
+            entityFactory.CreateLabWork()
                 .WithName("Lab 1")
                 .WithDescription("Description for Lab 1")
                 .WithRateCriteria("Rate Criteria")
                 .WithPoints(50)
-                .WithAuthor(author)
                 .Build(),
         };
 
         var lectureMaterials = new List<Lecture>
         {
-            new LectureFactory()
+            entityFactory.CreateLecture()
                 .WithName("Lecture 1")
                 .WithDescription("Description for Lecture 1")
                 .WithContent("Content for Lecture 1")
-                .WithAuthor(author)
                 .Build(),
         };
 
-        SubjectFactory subjectFactory = new SubjectFactory()
+        ISubjectBuilder subjectBuilder = entityFactory.CreateSubject()
             .WithName("Invalid Subject")
-            .WithAuthor(author)
             .WithGradingType(GradingFormat.Exam, 60)
             .WithTotalPoints(50)
             .WithLabWorks(labWorks)
             .WithLectureMaterials(lectureMaterials);
 
-        Assert.Throws<ArgumentException>(() => subjectFactory.Build());
+        Assert.Throws<ArgumentException>(() => subjectBuilder.Build());
     }
 
     [Fact]
     public void BuildSubject_WithCorrectData_Success()
     {
         var author = new User("Author 1");
+        var entityFactory = new EntityFactory(author);
 
         var labWorks = new List<LabWork>
         {
-            new LabWorkFactory()
+            entityFactory.CreateLabWork()
                 .WithName("Lab 1")
                 .WithDescription("Description for Lab 1")
                 .WithRateCriteria("Rate Criteria")
                 .WithPoints(50)
-                .WithAuthor(author)
                 .Build(),
         };
 
         var lectureMaterials = new List<Lecture>
         {
-            new LectureFactory()
+            entityFactory.CreateLecture()
                 .WithName("Lecture 1")
                 .WithDescription("Description for Lecture 1")
                 .WithContent("Content for Lecture 1")
-                .WithAuthor(author)
                 .Build(),
         };
 
-        SubjectFactory subject = new SubjectFactory()
+        ISubjectBuilder subject = entityFactory.CreateSubject()
             .WithName("Valid Subject")
-            .WithAuthor(author)
             .WithGradingType(GradingFormat.Exam, 60)
             .WithTotalPoints(100)
             .WithLabWorks(labWorks)

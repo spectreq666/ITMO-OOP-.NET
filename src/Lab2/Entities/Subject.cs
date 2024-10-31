@@ -5,8 +5,6 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 public class Subject : IEntity, IPrototype<Subject>
 {
     private readonly int _idCounter;
-    private readonly List<LabWork> _labWorks;
-    private List<Lecture> _lectureMaterials;
 
     public Subject(string name, User author, GradingType gradingType, int totalPoints, IReadOnlyCollection<LabWork> labWorks, IReadOnlyCollection<Lecture> lectureMaterials, int? parentId = null)
     {
@@ -17,8 +15,8 @@ public class Subject : IEntity, IPrototype<Subject>
         TotalPoints = totalPoints;
         ParentId = parentId;
 
-        _labWorks = new List<LabWork>(labWorks);
-        _lectureMaterials = new List<Lecture>(lectureMaterials);
+        LabWorks = new List<LabWork>(labWorks);
+        LectureMaterials = new List<Lecture>(lectureMaterials);
     }
 
     public int Id { get; }
@@ -31,17 +29,23 @@ public class Subject : IEntity, IPrototype<Subject>
 
     public int TotalPoints { get; }
 
-    public int? ParentId { get; }
+    public int? ParentId { get; private set; }
 
-    public Subject Clone()
+    public IReadOnlyCollection<LabWork> LabWorks { get; }
+
+    public IReadOnlyCollection<Lecture> LectureMaterials { get; private set; }
+
+    public Subject ShallowCopy()
     {
-        return new Subject(Name, Author, GradingType, TotalPoints, _labWorks, _lectureMaterials, Id);
+        var clonedSubject = (Subject)MemberwiseClone();
+        clonedSubject.ParentId = Id;
+        return clonedSubject;
     }
 
     public void Update(string name, GradingType gradingType, IReadOnlyCollection<Lecture> lectureMaterials)
     {
         Name = name;
         GradingType = gradingType;
-        _lectureMaterials = new List<Lecture>(lectureMaterials);
+        LectureMaterials = new List<Lecture>(lectureMaterials);
     }
 }

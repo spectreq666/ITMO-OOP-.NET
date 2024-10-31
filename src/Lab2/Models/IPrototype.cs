@@ -2,5 +2,5 @@
 
 public interface IPrototype<out T> where T : IEntity
 {
-    T Clone();
+    T ShallowCopy();
 }

@@ -1,9 +1,8 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Builders;
 
-public class LabWorkFactory : IBuilder<LabWork>
+public class LabWorkBuilder : ILabWorkBuilder
 {
     private readonly int? _parentId;
     private string _name;
@@ -12,7 +11,7 @@ public class LabWorkFactory : IBuilder<LabWork>
     private int _points;
     private User? _author;
 
-    public LabWorkFactory()
+    public LabWorkBuilder()
     {
         _name = string.Empty;
         _description = string.Empty;
@@ -22,31 +21,31 @@ public class LabWorkFactory : IBuilder<LabWork>
         _author = null;
     }
 
-    public LabWorkFactory WithName(string name)
+    public ILabWorkBuilder WithName(string name)
     {
         _name = name;
         return this;
     }
 
-    public LabWorkFactory WithDescription(string description)
+    public ILabWorkBuilder WithDescription(string description)
     {
         _description = description;
         return this;
     }
 
-    public LabWorkFactory WithRateCriteria(string rateCriteria)
+    public ILabWorkBuilder WithRateCriteria(string rateCriteria)
     {
         _rateCriteria = rateCriteria;
         return this;
     }
 
-    public LabWorkFactory WithPoints(int points)
+    public ILabWorkBuilder WithPoints(int points)
     {
         _points = points;
         return this;
     }
 
-    public LabWorkFactory WithAuthor(User user)
+    public ILabWorkBuilder WithAuthor(User user)
     {
         _author = user;
         return this;

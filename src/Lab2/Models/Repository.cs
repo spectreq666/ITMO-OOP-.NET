@@ -1,6 +1,6 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab2.Models;
 
-public class GenericRepository<T> : IRepository<T> where T : IEntity
+public class Repository<T> : IRepository<T> where T : IEntity
 {
     private readonly List<T> _entities = new List<T>();
 

@@ -1,9 +1,8 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Entities;
-using Itmo.ObjectOrientedProgramming.Lab2.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Builders;
 
-public class LectureFactory : IBuilder<Lecture>
+public class LectureBuilder : ILectureBuilder
 {
     private readonly int? _parentId;
     private string _name;
@@ -11,7 +10,7 @@ public class LectureFactory : IBuilder<Lecture>
     private string _content;
     private User? _author;
 
-    public LectureFactory()
+    public LectureBuilder()
     {
         _name = string.Empty;
         _description = string.Empty;
@@ -20,27 +19,27 @@ public class LectureFactory : IBuilder<Lecture>
         _author = null;
     }
 
-    public LectureFactory WithName(string name)
+    public ILectureBuilder WithName(string name)
     {
         _name = name;
         return this;
     }
 
-    public LectureFactory WithDescription(string description)
+    public ILectureBuilder WithDescription(string description)
     {
         _description = description;
         return this;
     }
 
-    public LectureFactory WithContent(string content)
+    public ILectureBuilder WithContent(string content)
     {
         _content = content;
         return this;
     }
 
-    public LectureFactory WithAuthor(User user)
+    public ILectureBuilder WithAuthor(User author)
     {
-        _author = user;
+        _author = author;
         return this;
     }
 

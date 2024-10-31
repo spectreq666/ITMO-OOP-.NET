@@ -35,8 +35,10 @@ public class Lecture : IEntity, IPrototype<Lecture>
         Content = content;
     }
 
-    public Lecture Clone()
+    public Lecture ShallowCopy()
     {
-        return new Lecture(Name, Description, Content, Author, Id);
+        var clonedLecture = (Lecture)MemberwiseClone();
+        clonedLecture.ParentId = Id;
+        return clonedLecture;
     }
 }

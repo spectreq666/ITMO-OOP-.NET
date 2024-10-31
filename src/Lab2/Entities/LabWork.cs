@@ -38,8 +38,10 @@ public class LabWork : IEntity, IPrototype<LabWork>
         RateCriteria = rateCriteria;
     }
 
-    public LabWork Clone()
+    public LabWork ShallowCopy()
     {
-        return new LabWork(Name, Description, RateCriteria, Points, Author, Id);
+        var clonedLabWork = (LabWork)MemberwiseClone();
+        clonedLabWork.ParentId = Id;
+        return clonedLabWork;
     }
 }
