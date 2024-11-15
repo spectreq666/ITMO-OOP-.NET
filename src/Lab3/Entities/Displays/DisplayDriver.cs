@@ -1,4 +1,4 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab3.Models;
+﻿namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Displays;
 
 public class DisplayDriver : IDisplayDriver
 {

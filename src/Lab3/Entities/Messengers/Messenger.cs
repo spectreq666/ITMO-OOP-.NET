@@ -1,6 +1,6 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab3.Models;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.Entities;
+namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messengers;
 
 public class Messenger : IRecipient
 {
