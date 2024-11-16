@@ -1,26 +1,26 @@
-﻿    namespace Itmo.ObjectOrientedProgramming.Lab3.Entities;
+﻿namespace Itmo.ObjectOrientedProgramming.Lab3.Entities;
 
-    public class Topic
+public class Topic
+{
+    private readonly List<IRecipient> _recipients = new List<IRecipient>();
+
+    public Topic(string name)
     {
-        public string Name { get; }
+        Name = name;
+    }
 
-        private readonly List<IRecipient> _recipients = new List<IRecipient>();
+    public string Name { get; }
 
-        public Topic(string name)
+    public void AddRecipient(IRecipient recipient)
+    {
+        _recipients.Add(recipient);
+    }
+
+    public void SendMessage(Message message)
+    {
+        foreach (IRecipient recipient in _recipients)
         {
-            Name = name;
-        }
-
-        public void AddRecipient(IRecipient recipient)
-        {
-            _recipients.Add(recipient);
-        }
-
-        public void SendMessage(Message message)
-        {
-            foreach (IRecipient recipient in _recipients)
-            {
-                recipient.ReceiveMessage(message);
-            }
+            recipient.ReceiveMessage(message);
         }
     }
+}
