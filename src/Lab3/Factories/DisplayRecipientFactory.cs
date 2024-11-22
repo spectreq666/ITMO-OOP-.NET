@@ -4,17 +4,17 @@ using Itmo.ObjectOrientedProgramming.Lab3.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Factories;
 
-public class DisplayFactory : RecipientFactory
+public class DisplayRecipientFactory : RecipientFactory
 {
-    private readonly IDisplayDriver _driver;
+    private readonly Display _display;
 
-    public DisplayFactory(IDisplayDriver driver)
+    public DisplayRecipientFactory(Display display)
     {
-        _driver = driver;
+        _display = display;
     }
 
     public override IRecipient CreateRecipient()
     {
-        return new Display(_driver);
+        return new DisplayRecipient(_display);
     }
 }

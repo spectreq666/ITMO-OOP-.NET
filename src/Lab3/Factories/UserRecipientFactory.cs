@@ -1,21 +1,22 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab3.Entities;
+using Itmo.ObjectOrientedProgramming.Lab3.Entities.Recipients;
 using Itmo.ObjectOrientedProgramming.Lab3.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Factories;
 
-public class UserFactory : RecipientFactory
+public class UserRecipientFactory : RecipientFactory
 {
-    private readonly string _name;
+    private readonly User _user;
     private readonly ILogger _logger;
 
-    public UserFactory(string name, ILogger logger)
+    public UserRecipientFactory(User user, ILogger logger)
     {
-        _name = name;
+        _user = user;
         _logger = logger;
     }
 
     public override IRecipient CreateRecipient()
     {
-        return new User(_name, _logger);
+        return new UserRecipient(_user, _logger);
     }
 }

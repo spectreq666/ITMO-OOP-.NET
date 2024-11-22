@@ -1,27 +1,14 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab3.Models;
+﻿namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Displays;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Displays;
-
-public class Display : IRecipient
+public class Display
 {
-    private readonly IDisplayDriver _driver;
-    private ImportanceLevel _importanceFilter = ImportanceLevel.None;
-
-    public Display(IDisplayDriver driver)
+    public Display(string name, IDisplayDriver driver)
     {
-        _driver = driver;
+        Name = name;
+        Driver = driver;
     }
 
-    public void SetImportanceFilter(ImportanceLevel importanceLevel)
-    {
-        _importanceFilter = importanceLevel;
-    }
+    public string Name { get; }
 
-    public void ReceiveMessage(Message message)
-    {
-        if (_importanceFilter != ImportanceLevel.None && message.Importance < _importanceFilter) return;
-        _driver.Clear();
-        _driver.SetColor(ConsoleColor.Red);
-        _driver.WriteText($"Title: {message.Title}\nBody: {message.Body}");
-    }
+    public IDisplayDriver Driver { get; }
 }

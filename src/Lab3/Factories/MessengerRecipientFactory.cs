@@ -5,17 +5,19 @@ using Itmo.ObjectOrientedProgramming.Lab3.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Factories;
 
-public class MessengerFactory : RecipientFactory
+public class MessengerRecipientFactory : RecipientFactory
 {
     private readonly ILogger _logger;
+    private readonly Messenger _messenger;
 
-    public MessengerFactory(ILogger logger)
+    public MessengerRecipientFactory(Messenger messenger, ILogger logger)
     {
+        _messenger = messenger;
         _logger = logger;
     }
 
     public override IRecipient CreateRecipient()
     {
-        return new Messenger(_logger);
+        return new MessengerRecipient(_messenger, _logger);
     }
 }
