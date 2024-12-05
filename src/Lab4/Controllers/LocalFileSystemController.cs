@@ -139,16 +139,16 @@ public class LocalFileSystemController : IFileSystemController
         return Path.IsPathRooted(filePath) ? filePath : Path.Combine(CurrentDirectory, filePath);
     }
 
-    public void ShowFileContent(string filePath)
+    public string GetFileContent(string filePath)
     {
         try
         {
             string fileContents = File.ReadAllText(filePath);
-            Console.WriteLine(fileContents);
+            return fileContents;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка при чтении файла: {ex.Message}");
+            throw new IOException($"Ошибка при чтении файла: {ex.Message}", ex);
         }
     }
 

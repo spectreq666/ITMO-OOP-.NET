@@ -30,5 +30,5 @@ public interface IFileSystemController
 
     void CopyFile(string sourcePath, string destinationPath);
 
-    void ShowFileContent(string filePath);
+    string GetFileContent(string filePath);
 }

@@ -1,17 +1,20 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab4.Controllers;
 using Itmo.ObjectOrientedProgramming.Lab4.Models;
+using Itmo.ObjectOrientedProgramming.Lab4.Services;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Commands;
 
 public class TreeGotoCommand : Command
 {
     private readonly IFileSystemController _fileSystem;
+    private readonly IOutputService _outputService;
     private readonly string _filePath;
 
-    public TreeGotoCommand(IFileSystemController fileSystem, string path)
+    public TreeGotoCommand(IFileSystemController fileSystem, IOutputService outputService, string path)
         : base("tree goto")
     {
         _fileSystem = fileSystem;
+        _outputService = outputService;
         _filePath = path;
     }
 
@@ -30,5 +33,6 @@ public class TreeGotoCommand : Command
     public override void Execute()
     {
         _fileSystem.ChangeDirectory(_filePath);
+        _outputService.PrintMessage("Успешно перешли к папке.");
     }
 }

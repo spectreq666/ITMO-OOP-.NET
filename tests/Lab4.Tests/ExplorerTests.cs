@@ -1,4 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab4.Controllers;
+using Itmo.ObjectOrientedProgramming.Lab4.Handlers;
 using Itmo.ObjectOrientedProgramming.Lab4.Services;
 using Moq;
 using Xunit;
@@ -15,7 +16,31 @@ public class ExplorerTests
     {
         _mockFileSystemController = new Mock<IFileSystemController>();
         _mockOutputService = new Mock<IOutputService>();
-        _commandHandlerService = new CommandHandlerService(_mockFileSystemController.Object, _mockOutputService.Object);
+
+        var treeSubCommandHandlers = new List<ITreeSubCommandHandler>
+        {
+            new TreeGotoHandler(),
+            new TreeListHandler(),
+        };
+
+        var fileSubCommandHandlers = new List<IFileSubCommandHandler>
+        {
+            new FileCopyHandler(),
+            new FileDeleteHandler(),
+            new FileMoveHandler(),
+            new FileRenameHandler(),
+            new FileShowHandler(),
+        };
+
+        var commandHandlers = new List<ICommandHandler>
+        {
+            new ConnectCommandHandler(_mockFileSystemController.Object),
+            new DisconnectCommandHandler(_mockFileSystemController.Object),
+            new TreeCommandHandler(_mockFileSystemController.Object, _mockOutputService.Object, treeSubCommandHandlers),
+            new FileCommandHandler(_mockFileSystemController.Object, _mockOutputService.Object, fileSubCommandHandlers),
+        };
+
+        _commandHandlerService = new CommandHandlerService(commandHandlers);
     }
 
     [Fact]
@@ -106,7 +131,7 @@ public class ExplorerTests
 
         _commandHandlerService.HandleCommand(input);
 
-        _mockFileSystemController.Verify(fs => fs.ShowFileContent(fullFilePath), Times.Once);
+        _mockFileSystemController.Verify(fs => fs.GetFileContent(fullFilePath), Times.Once);
     }
 
     [Fact]
