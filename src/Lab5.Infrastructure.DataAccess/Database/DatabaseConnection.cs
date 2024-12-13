@@ -21,7 +21,7 @@ public class DatabaseConnection
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка при инициализации базы данных {ex.Message}");
+            throw new NpgsqlException($"Ошибка при инициализации базы данных {ex.Message}");
         }
 
         return connection;
