@@ -56,7 +56,6 @@ public class AccountService : IAccountService
 
     public decimal GetBalance(Guid accountId)
     {
-        Console.WriteLine(accountId);
         Account? account = _accountRepository.GetById(accountId);
         if (account == null)
             throw new ArgumentException("Account not found.");
