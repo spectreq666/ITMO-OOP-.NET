@@ -31,6 +31,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{3DB12F
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab5", "Lab5", "{5F7C7D95-D7F3-40A9-A5F4-B78CDC556B0A}"
+	ProjectSection(SolutionItems) = preProject
+		src\Lab5\README.md = src\Lab5\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{3C21C138-0314-4C75-B049-F16667A692F2}"
 EndProject
